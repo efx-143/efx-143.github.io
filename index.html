@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanyam Chavan // Level 1 Developer</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Orbitron -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        /* Global safeguard to prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; } /* bg-slate-950 */
@@ -167,14 +169,22 @@
         @keyframes glitch-anim-2 {
             0%, 100% { clip-path: inset(80% 0 12% 0); } 25% { clip-path: inset(33% 0 50% 0); } 50% { clip-path: inset(10% 0 85% 0); } 75% { clip-path: inset(60% 0 20% 0); }
         }
+
+        /* Disable custom cursor on mobile */
+        @media (pointer: coarse) {
+            .cursor-dot, .cursor-outline {
+                display: none;
+            }
+            body {
+                cursor: auto; /* Restore the default system cursor */
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-300 antialiased">
-    <!-- Custom Cursor -->
     <div class="cursor-outline"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Header -->
     <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="brand text-2xl font-bold text-white tracking-widest">SANYAM_</a>
@@ -188,8 +198,7 @@
                 <i data-lucide="menu"></i>
             </button>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full w-full bg-slate-900 px-6 pb-4 transition-all duration-300 ease-in-out transform -translate-y-full opacity-0">
             <a href="#about" class="block py-2 hover:text-fuchsia-400 nav-link">01_ABOUT</a>
             <a href="#skills" class="block py-2 hover:text-fuchsia-400 nav-link">02_SKILLS</a>
             <a href="#projects" class="block py-2 hover:text-fuchsia-400 nav-link">03_PROJECTS</a>
@@ -198,12 +207,11 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center bg-slate-900 p-6 relative overflow-hidden">
+        <section id="home" class="min-h-screen flex items-center justify-center bg-slate-900 p-6 relative">
             <div id="particles-js"></div>
             <div class="scanlines"></div>
             <div class="text-center z-10">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-widest mb-4">
+                <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-normal sm:tracking-widest mb-4">
                     Sanyam Chavan
                 </h1>
                 <div class="glitch-container text-xl md:text-2xl text-fuchsia-300 font-medium h-8">
@@ -221,7 +229,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="py-20 md:py-32 bg-slate-900">
             <div class="container mx-auto px-6">
                 <div class="reveal text-center mb-16">
@@ -244,7 +251,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills" class="py-20 md:py-32 bg-slate-950/50">
             <div class="container mx-auto px-6">
                 <div class="reveal text-center mb-16">
@@ -270,7 +276,7 @@
                             <div data-tilt class="card-glow p-6 rounded-none"><p>Premiere Pro</p></div>
                             <div data-tilt class="card-glow p-6 rounded-none"><p>DaVinci</p></div>
                             <div data-tilt class="card-glow p-6 rounded-none"><p>Photoshop</p></div>
-                            <div data-tilt class="card-glow p-6 rounded-none"><p>DigiMarketing</p></div>
+                            <div data-tilt class="card-glow p-6 rounded-none"><p>Digital marketing</p></div>
                             <div data-tilt class="card-glow p-6 rounded-none"><p>SEO</p></div>
                         </div>
                     </div>
@@ -278,7 +284,6 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" class="py-20 md:py-32 bg-slate-900">
             <div class="container mx-auto px-6">
                 <div class="reveal text-center mb-16">
@@ -286,7 +291,6 @@
                     <div class="w-24 h-1 bg-fuchsia-500 mx-auto mt-4 shadow-[0_0_10px_#d946ef]"></div>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Cards -->
                     <div data-tilt class="reveal card-glow rounded-none overflow-hidden" style="transition-delay: 0ms;">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold text-white mb-2">Living Diary App</h3>
@@ -323,7 +327,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-32 bg-slate-950/50">
             <div class="container mx-auto px-6 text-center">
                 <div class="reveal">
@@ -345,14 +348,12 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-slate-950 py-6">
         <div class="container mx-auto px-6 text-center text-slate-500">
             <p>&copy; 2024 Sanyam Chavan // All systems operational.</p>
         </div>
     </footer>
 
-    <!-- Scripts for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
@@ -378,11 +379,35 @@
         // Mobile Menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+            // Wait for the transition to finish before hiding it completely
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300); // This should match your transition duration
+        };
+
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            // This makes the element take up space before animation
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                // A tiny delay to allow the browser to render the element before transitioning it
+                setTimeout(() => {
+                    mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
+                }, 20);
+            } else {
+                closeMenu();
+            }
         });
+
+        // Close menu when a link is clicked
         document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    closeMenu();
+                }
+            });
         });
 
         // Typewriter Effect
