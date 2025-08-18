@@ -1,0 +1,165 @@
+/* Global safeguard to prevent horizontal scroll */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #020617; } /* bg-slate-950 */
+::-webkit-scrollbar-thumb { background: #a21caf; border-radius: 10px; } /* bg-fuchsia-700 */
+::-webkit-scrollbar-thumb:hover { background: #c026d3; } /* bg-fuchsia-600 */
+
+/* Base font style */
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #0f172a; /* bg-slate-900 */
+    cursor: none; /* Hide default cursor */
+}
+
+/* Custom Cursor */
+.cursor-dot, .cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #d946ef; /* fuchsia-500 */
+}
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #d946ef;
+    transition: all 0.1s ease-out;
+}
+body:hover .cursor-dot, body:hover .cursor-outline {
+    opacity: 1;
+}
+
+h1, h2, h3, h4, h5, h6, .nav-link, .brand {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Glassmorphism effect for the navbar */
+.glass-nav {
+    background: rgba(15, 23, 42, 0.6); /* bg-slate-900 with opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+/* Hero Section Background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Scan lines overlay for that retro-tech feel */
+.scanlines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    z-index: 1;
+    background-size: 100% 4px;
+    pointer-events: none;
+    animation: scan 7.5s linear infinite;
+}
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+}
+
+/* Fade-in animation for elements on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Custom glowing button and borders */
+.btn-glow {
+    border: 2px solid #c026d3; /* fuchsia-600 */
+    box-shadow: 0 0 5px #c026d3, inset 0 0 5px #c026d3;
+    transition: all 0.3s ease-in-out;
+}
+.btn-glow:hover {
+    background-color: #c026d3;
+    box-shadow: 0 0 20px #c026d3, inset 0 0 10px #c026d3;
+    transform: scale(1.05);
+}
+
+/* Project card glow effect */
+.card-glow {
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    background-clip: padding-box;
+    border: solid 1px #1e293b; /* slate-800 */
+    transform-style: preserve-3d;
+}
+.card-glow:hover {
+    border-color: #d946ef; /* fuchsia-500 */
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
+}
+
+/* Glitch effect for typewriter */
+.glitch-container { position: relative; }
+.glitch {
+    position: relative;
+    color: #f0f9ff; /* slate-50 */
+    text-shadow: 0 0 5px #d946ef; /* fuchsia-500 */
+}
+.glitch:before, .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+    clip-path: inset(50% 50% 50% 50%);
+}
+.glitch:before {
+    left: -2px;
+    text-shadow: -1px 0 #ff00c1; /* Magenta */
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+.glitch:after {
+    left: 2px;
+    text-shadow: 1px 0 #00fff9; /* Cyan */
+    animation: glitch-anim-2 1.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0%, 100% { clip-path: inset(37% 0 60% 0); } 25% { clip-path: inset(12% 0 45% 0); } 50% { clip-path: inset(70% 0 10% 0); } 75% { clip-path: inset(40% 0 40% 0); }
+}
+@keyframes glitch-anim-2 {
+    0%, 100% { clip-path: inset(80% 0 12% 0); } 25% { clip-path: inset(33% 0 50% 0); } 50% { clip-path: inset(10% 0 85% 0); } 75% { clip-path: inset(60% 0 20% 0); }
+}
+
+/* Disable custom cursor on mobile */
+@media (pointer: coarse) {
+    .cursor-dot, .cursor-outline {
+        display: none;
+    }
+    body {
+        cursor: auto; /* Restore the default system cursor */
+    }
+}
